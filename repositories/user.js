@@ -4,7 +4,7 @@ const bycrypt = require("bcrypt");
 const getAll = async () => {
   try {
     const users = await UserModel.findAll({
-      attributes: { exclude: ["password"] }, // Exclude sensitive data
+      attributes: { exclude: ["password"] },
     });
     return users;
   } catch (error) {
@@ -16,7 +16,7 @@ const getAll = async () => {
 const getById = async (id) => {
   try {
     const user = await UserModel.findByPk(id, {
-      attributes: { exclude: ["password"] }, // Exclude sensitive data
+      attributes: { exclude: ["password"] },
     });
     if (!user) {
       throw new Error("User not found");

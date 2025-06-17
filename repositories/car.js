@@ -49,11 +49,12 @@ const update = async (id, carData) => {
 
 const destroy = async (id) => {
   try {
-    const car = await Car.findByPk(id);
+    const car = await Car.destroy({
+      where: { id },
+    });
     if (!car) {
-      throw new Error("Car not found");
+      throw new Error("Car not found or already deleted");
     }
-    await car.destroy();
     return { message: "Car deleted successfully" };
   } catch (error) {
     console.error(`Error deleting car with ID ${id}:`, error);

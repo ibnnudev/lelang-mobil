@@ -29,7 +29,7 @@ const User = sequelize.define(
       unique: true,
       validate: {
         is: /^[0-9]+$/,
-        len: [10, 15], 
+        len: [10, 15],
       },
     },
     created_at: {

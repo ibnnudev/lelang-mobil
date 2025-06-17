@@ -68,9 +68,12 @@ const update = async (id, userData) => {
 
 const destroy = async (id) => {
   try {
-    const user = await UserModel.findByPk(id);
-    if (!user) throw new Error("User not found");
-    await UserModel.destroy();
+    const user = await UserModel.destroy({
+      where: { id },
+    });
+    if (!user) {
+      throw new Error("User not found");
+    }
     return { message: "User deleted successfully" };
   } catch (error) {
     console.error(`Error deleting car with ID ${id}:`, error);

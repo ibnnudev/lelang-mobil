@@ -6,6 +6,7 @@ const Car = sequelize.define(
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true,
+      allowNull: false,
     },
     name: {
       type: DataTypes.STRING,
@@ -22,6 +23,29 @@ const Car = sequelize.define(
     variant: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+
+    mileage: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+    },
+    vin: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      unique: true,
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    image_url: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    status: {
+      type: DataTypes.ENUM("available", "sold", "pending"),
+      allowNull: false,
+      defaultValue: "available",
     },
   },
   {

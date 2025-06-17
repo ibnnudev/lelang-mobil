@@ -68,6 +68,7 @@ const userController = {
 
   destroy: async (req, res) => {
     const { id } = req.params;
+    console.log(`Deleting user with ID: ${id}`);
     await handleRepositoryCall(
       res,
       () => userRepository.destroy(id),

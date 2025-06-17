@@ -17,10 +17,6 @@ const handleRepositoryCall = async (
     const data = await callback();
     successResponse(res, successMessageBuilder(data), data, successStatusCode);
   } catch (error) {
-    // if (error.stack) {
-    //   console.error("handleRepositoryCall: Error stack:", error.stack);
-    // }
-
     if (error.name === "SequelizeValidationError") {
       const errors = error.errors.map((err) => ({
         field: err.path,

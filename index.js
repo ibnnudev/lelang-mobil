@@ -4,9 +4,9 @@ const dotenv = require("dotenv");
 const { connectDB } = require("./config/database");
 const cors = require("cors");
 const requestLogger = require("./middlewares/request-logger");
-
-// Routes
 const routes = require("./routes/index");
+
+require("./models/associations");
 
 dotenv.config();
 

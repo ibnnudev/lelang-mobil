@@ -3,6 +3,9 @@ const successResponse = (res, message, data = {}, statusCode = 200) => {
     status: "success",
     message,
     data,
+    count: Array.isArray(data) ? data.length : Object.keys(data).length,
+    timestamp: new Date().toISOString(),
+    requestId: res.locals.requestId || null,
   });
 };
 

@@ -2,6 +2,7 @@ const Auction = require("./auction");
 const Car = require("./car");
 const User = require("./user");
 const Bid = require("./bids");
+const Transaction = require("./transactions");
 
 // auction 1-to-1 car
 Auction.belongsTo(Car, {
@@ -64,5 +65,45 @@ Bid.belongsTo(User, {
   foreignKey: "bidder_id",
   as: "bidder",
   onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
+
+// user 1-to-many transactions (buyer)
+User.hasMany(Transaction, {
+  foreignKey: "buyer_id",
+  as: "transactions",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
+
+// user 1-to-many transactions (seller)
+User.hasMany(Transaction, {
+  foreignKey: "seller_id",
+  as: "sales",
+  onDelete: "SET NULL",
+  onUpdate: "CASCADE",
+});
+
+// transaction 1-to-1 auction
+Transaction.belongsTo(Auction, {
+  foreignKey: "auction_id",
+  as: "auction",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
+
+// transaction 1-to-1 user (buyer)
+Transaction.belongsTo(User, {
+  foreignKey: "buyer_id",
+  as: "buyer",
+  onDelete: "CASCADE",
+  onUpdate: "CASCADE",
+});
+
+// transaction 1-to-1 user (seller)
+Transaction.belongsTo(User, {
+  foreignKey: "seller_id",
+  as: "seller",
+  onDelete: "SET NULL",
   onUpdate: "CASCADE",
 });

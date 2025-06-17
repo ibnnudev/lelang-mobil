@@ -49,8 +49,15 @@ const getById = async (id) => {
 const store = async (bidData) => {
   try {
     const auction = await auctionRepository.getById(bidData.auction_id);
+    if (auction.status !== "active") {
+      throw new Error("Auction is not active");
+    }
     if (!auction) {
       throw new Error("Auction not found");
+    }
+
+    if (bidData.bid_amount <= auction.starting_bid) {
+      throw new Error("Bid amount must be higher than the starting bid");
     }
 
     const highestBidder = await Bid.findOne({
@@ -72,6 +79,7 @@ const store = async (bidData) => {
 
     await auctionRepository.update(bidData.auction_id, {
       current_highest_bid: bidData.bid_amount,
+      highest_bidder_id: newBid.bidder_id,
     });
 
     return newBid;
@@ -86,6 +94,7 @@ const update = async (id, bidData) => {
     const highestBidder = await Bid.findOne({
       where: {
         auction_id: bidData.auction_id,
+        status: "active",
         deleted_at: null,
       },
       order: [["bid_amount", "DESC"]],
@@ -113,6 +122,7 @@ const update = async (id, bidData) => {
 
     await auctionRepository.update(bidData.auction_id, {
       current_highest_bid: bidData.bid_amount,
+      highest_bidder_id: updatedBid.bidder_id,
     });
     return updatedBid;
   } catch (error) {

@@ -1,5 +1,6 @@
 const UserModel = require("../models/user");
 const bycrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const getAll = async () => {
   try {
@@ -81,12 +82,46 @@ const destroy = async (id) => {
   }
 };
 
+const login = async (username, password) => {
+  try {
+    const user = await UserModel.findOne({
+      where: { username },
+    });
+    if (!user) throw new Error("User not found");
+    const isPasswordValid = await bycrypt.compare(password, user.password);
+    if (!isPasswordValid) throw new Error("Invalid password");
+
+    const token = generateToken(user);
+    return {
+      user: {
+        id: user.id,
+        username: user.username,
+      },
+      token,
+    };
+  } catch (error) {
+    console.error("Error during login:", error);
+    throw error;
+  }
+};
+
+const generateToken = (user) => {
+  const token = jwt.sign(
+    { id: user.id, username: user.username },
+    process.env.JWT_SECRET,
+    { expiresIn: "1d" }
+  );
+
+  return token;
+};
+
 const userRepository = {
   getAll,
   getById,
   store,
   update,
   destroy,
+  login,
 };
 
 module.exports = userRepository;

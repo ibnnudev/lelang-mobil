@@ -77,6 +77,16 @@ const userController = {
       ERROR_CODES.DELETE_ERROR
     );
   },
+  login: async (req, res) => {
+    const { username, password } = req.body;
+    await handleRepositoryCall(
+      res,
+      () => userRepository.login(username, password),
+      (data) => SUCCESS_MESSAGES.LOGIN_SUCCESS(ENTITY_NAME),
+      ERROR_MESSAGES.LOGIN_FAILED(ENTITY_NAME),
+      ERROR_CODES.LOGIN_ERROR
+    );
+  },
 };
 
 module.exports = userController;

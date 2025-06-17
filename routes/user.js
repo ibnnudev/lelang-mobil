@@ -1,12 +1,17 @@
 const router = require("express").Router();
 const userController = require("../controllers/user");
-
-router.route("/").get(userController.getAll).post(userController.store);
+const authenticate = require("../middlewares/auth");
 
 router
+  .route("/")
+  .get(authenticate, userController.getAll)
+  .post(authenticate, userController.store);
+router
   .route("/:id")
-  .get(userController.getById)
-  .put(userController.update)
-  .delete(userController.destroy);
+  .get(authenticate, userController.getById)
+  .put(authenticate, userController.update)
+  .delete(authenticate, userController.destroy);
+
+router.post("/login", userController.login);
 
 module.exports = router;

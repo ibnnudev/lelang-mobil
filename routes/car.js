@@ -1,11 +1,16 @@
 const router = require("express").Router();
 const carController = require("../controllers/car");
+const authenticate = require("../middlewares/auth");
 
-router.route("/").get(carController.getAll).post(carController.store);
+router
+  .route("/")
+  .get(authenticate, carController.getAll)
+  .post(authenticate, carController.store);
+
 router
   .route("/:id")
-  .get(carController.getById)
-  .put(carController.update)
-  .delete(carController.destroy);
+  .get(authenticate, carController.getById)
+  .put(authenticate, carController.update)
+  .delete(authenticate, carController.destroy);
 
 module.exports = router;

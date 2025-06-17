@@ -1,4 +1,5 @@
 const SUCCESS_MESSAGES = {
+  LOGIN_SUCCESS: (entityName) => `${entityName} logged in successfully.`,
   FETCH_SUCCESS: (entityName) => `${entityName}s retrieved successfully.`,
   FETCH_ONE_SUCCESS: (entityName, id) =>
     `${entityName} with ID ${id} retrieved successfully.`,
@@ -10,6 +11,12 @@ const SUCCESS_MESSAGES = {
 };
 
 const ERROR_MESSAGES = {
+  UNAUTHORIZED: "Unauthorized access.",
+  TOKEN_EXPIRED: "Token has expired. Please log in again.",
+  TOKEN_INVALID: "Invalid token. Please log in again.",
+  INVALID_DATA: "Invalid data provided.",
+  INTERNAL_SERVER_ERROR: "Internal Server Error",
+
   FETCH_FAILED: (entityName) =>
     `Failed to retrieve ${entityName.toLowerCase()}s.`,
   NOT_FOUND: (entityName, id) => `${entityName} with ID ${id} not found.`,
@@ -19,8 +26,6 @@ const ERROR_MESSAGES = {
     `Failed to update ${entityName.toLowerCase()}.`,
   DELETE_FAILED: (entityName) =>
     `Failed to delete ${entityName.toLowerCase()}.`,
-
-  INVALID_DATA: "Invalid data provided.",
   UNIQUE_VALUE_TAKEN: (field, value) =>
     `The ${field} '${value}' is already taken.`,
 
@@ -47,32 +52,39 @@ const ERROR_MESSAGES = {
     "Expectation failed. The server could not meet the requirements of the Expect request-header field.",
   PAYLOAD_TOO_LARGE:
     "Payload too large. The request payload is larger than the server is willing or able to process.",
+  TOKEN_EXPIRED: "Token has expired. Please log in again.",
+  TOKEN_INVALID: "Invalid token. Please log in again.",
 };
 
 const ERROR_CODES = {
-  FETCH_ERROR: "FETCH_ERROR",
-  NOT_FOUND_ERROR: "NOT_FOUND_ERROR",
-  CREATE_ERROR: "CREATE_ERROR",
-  UPDATE_ERROR: "UPDATE_ERROR",
-  DELETE_ERROR: "DELETE_ERROR",
+  FETCH_ERROR: 500,
+  NOT_FOUND_ERROR: 404,
+  CREATE_ERROR: 500,
+  UPDATE_ERROR: 500,
+  DELETE_ERROR: 500,
 
-  VALIDATION_ERROR: "VALIDATION_ERROR",
-  UNIQUE_CONSTRAINT_ERROR: "UNIQUE_CONSTRAINT_ERROR",
-  INTERNAL_SERVER_ERROR: "INTERNAL_SERVER_ERROR",
-  NOT_IMPLEMENTED_ERROR: "NOT_IMPLEMENTED_ERROR",
-  SERVICE_UNAVAILABLE_ERROR: "SERVICE_UNAVAILABLE_ERROR",
-  GATEWAY_TIMEOUT_ERROR: "GATEWAY_TIMEOUT_ERROR",
-  METHOD_NOT_ALLOWED_ERROR: "METHOD_NOT_ALLOWED_ERROR",
-  NOT_ACCEPTABLE_ERROR: "NOT_ACCEPTABLE_ERROR",
-  TOO_MANY_REQUESTS_ERROR: "TOO_MANY_REQUESTS_ERROR",
-  PRECONDITION_FAILED_ERROR: "PRECONDITION_FAILED_ERROR",
-  EXPECTATION_FAILED_ERROR: "EXPECTATION_FAILED_ERROR",
-  SERVER_ERROR: "SERVER_ERROR",
-  UNAUTHORIZED_ERROR: "UNAUTHORIZED_ERROR",
-  FORBIDDEN_ERROR: "FORBIDDEN_ERROR",
-  BAD_REQUEST_ERROR: "BAD_REQUEST_ERROR",
-  UNPROCESSABLE_ENTITY_ERROR: "UNPROCESSABLE_ENTITY_ERROR",
-  CONFLICT_ERROR: "CONFLICT_ERROR",
+  VALIDATION_ERROR: 422,
+  UNIQUE_CONSTRAINT_ERROR: 409,
+  INTERNAL_SERVER_ERROR: 500,
+  NOT_IMPLEMENTED_ERROR: 501,
+  SERVICE_UNAVAILABLE_ERROR: 503,
+  GATEWAY_TIMEOUT_ERROR: 504,
+  METHOD_NOT_ALLOWED_ERROR: 405,
+  NOT_ACCEPTABLE_ERROR: 406,
+  TOO_MANY_REQUESTS_ERROR: 429,
+  PRECONDITION_FAILED_ERROR: 412,
+  EXPECTATION_FAILED_ERROR: 417,
+  SERVER_ERROR: 500,
+  FORBIDDEN_ERROR: 403,
+  BAD_REQUEST_ERROR: 400,
+  UNPROCESSABLE_ENTITY_ERROR: 422,
+  CONFLICT_ERROR: 409,
+
+  TOKEN_EXPIRED: 401,
+  TOKEN_INVALID: 401,
+  LOGIN_ERROR: 401,
+
+  UNAUTHORIZED_ERROR: 401,
 };
 
 module.exports = {

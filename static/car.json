@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "name": "Toyota Camry",
+    "year": 2020
+  },
+  {
+    "id": 2,
+    "name": "Honda Accord",
+    "year": 2019
+  },
+  {
+    "id": 3,
+    "name": "Ford Focus",
+    "year": 2021
+  },
+  {
+    "id": 4,
+    "name": "Chevrolet Malibu",
+    "year": 2018
+  },
+  {
+    "id": 5,
+    "name": "Nissan Altima",
+    "year": 2022
+  },
+  {
+    "id": 6,
+    "name": "Hyundai Sonata",
+    "year": 2020
+  },
+  {
+    "id": 7,
+    "name": "Kia Optima",
+    "year": 2019
+  },
+  {
+    "id": 8,
+    "name": "Volkswagen Passat",
+    "year": 2021
+  },
+  {
+    "id": 9,
+    "name": "Subaru Legacy",
+    "year": 2018
+  },
+  {
+    "id": 10,
+    "name": "Mazda6",
+    "year": 2022
+  }
+]

@@ -11,7 +11,6 @@ const Car = sequelize.define(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         len: [3, 100],
       },
@@ -35,7 +34,6 @@ const Car = sequelize.define(
     vin: {
       type: DataTypes.STRING,
       allowNull: true,
-      unique: true,
       validate: {
         is: /^[A-HJ-NPR-Z0-9]{17}$/, // VIN validation regex
       },
@@ -62,6 +60,12 @@ const Car = sequelize.define(
     updatedAt: "updated_at",
     deletedAt: "deleted_at",
     paranoid: true,
+    indexes: [
+      {
+        unique: true,
+        fields: ["vin"],
+      },
+    ],
   }
 );
 

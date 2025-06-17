@@ -63,6 +63,17 @@ const Auction = sequelize.define(
     updatedAt: "updated_at",
     deletedAt: "deleted_at",
     paranoid: true,
+    indexes: [
+      {
+        fields: ["car_id", "status"],
+      },
+      {
+        fields: ["start_time"],
+      },
+      {
+        fields: ["end_time"],
+      },
+    ],
     hooks: {
       beforeCreate: async (auction, options) => {
         const existingAuction = await Auction.findOne({

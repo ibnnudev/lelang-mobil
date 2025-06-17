@@ -10,7 +10,6 @@ const User = sequelize.define(
     username: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
       validate: {
         len: [3, 50],
         isAlphanumeric: true,
@@ -30,7 +29,6 @@ const User = sequelize.define(
     phone_number: {
       type: DataTypes.STRING,
       allowNull: true,
-      unique: true,
       validate: {
         is: /^[0-9]+$/,
         len: [10, 15],
@@ -59,6 +57,12 @@ const User = sequelize.define(
     updatedAt: "updated_at",
     deletedAt: "deleted_at",
     paranoid: true,
+    indexes: [
+      {
+        unique: true,
+        fields: ["username"],
+      },
+    ],
   }
 );
 

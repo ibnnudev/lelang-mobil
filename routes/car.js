@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const carController = require("../controllers/car.controller");
+const carController = require("../controllers/car");
 
 router.route("/").get(carController.getAll).post(carController.store);
 router

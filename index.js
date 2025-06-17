@@ -6,7 +6,7 @@ const cors = require("cors");
 const requestLogger = require("./middlewares/request-logger");
 
 // Routes
-const routes = require("./routes/index.route");
+const routes = require("./routes/index");
 
 dotenv.config();
 

@@ -34,9 +34,6 @@ const Car = sequelize.define(
     vin: {
       type: DataTypes.STRING,
       allowNull: true,
-      validate: {
-        is: /^[A-HJ-NPR-Z0-9]{17}$/, // VIN validation regex
-      },
     },
     description: {
       type: DataTypes.TEXT,

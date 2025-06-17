@@ -57,7 +57,11 @@ const handleRepositoryCall = async (
         errors
       );
     }
-    errorResponse(res, errorMessage, 500, errorCode);
+
+    errorResponse(res, errorMessage, 500, errorCode, {
+      message: error.message,
+      stack: process.env.NODE_ENV === "development" ? error.stack : undefined,
+    });
   }
 };
 

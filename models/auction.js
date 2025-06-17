@@ -74,29 +74,6 @@ const Auction = sequelize.define(
         fields: ["end_time"],
       },
     ],
-    hooks: {
-      beforeCreate: async (auction, options) => {
-        const existingAuction = await Auction.findOne({
-          where: {
-            car_id: auction.car_id,
-            status: { [DataTypes.Op.not]: "closed" },
-            [DataTypes.Op.or]: [
-              {
-                start_time: { [DataTypes.Op.lt]: auction.end_time },
-                end_time: { [DataTypes.Op.gt]: auction.start_time },
-              },
-              {
-                start_time: { [DataTypes.Op.gte]: auction.start_time },
-                end_time: { [DataTypes.Op.lte]: auction.end_time },
-              },
-            ],
-          },
-        });
-        if (existingAuction) {
-          throw new Error("An auction for this car is already scheduled.");
-        }
-      },
-    },
   }
 );
 module.exports = Auction;

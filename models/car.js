@@ -11,9 +11,6 @@ const Car = sequelize.define(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [3, 100],
-      },
     },
     make: {
       type: DataTypes.STRING,

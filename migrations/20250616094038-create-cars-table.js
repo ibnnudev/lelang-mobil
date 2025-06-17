@@ -25,6 +25,30 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      mileage: {
+        type: Sequelize.INTEGER,
+        allowNull: true,
+      },
+      vin: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        validate: {
+          is: /^[A-HJ-NPR-Z0-9]{17}$/, // VIN validation regex
+        },
+      },
+      description: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      image_url: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      status: {
+        type: Sequelize.ENUM("available", "sold", "pending"),
+        allowNull: false,
+        defaultValue: "available",
+      },
       created_at: {
         type: Sequelize.DATE,
         allowNull: false,
@@ -39,7 +63,6 @@ module.exports = {
       },
     });
   },
-
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable("cars");
   },

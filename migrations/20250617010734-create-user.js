@@ -11,7 +11,6 @@ module.exports = {
       },
       username: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false,
       },
       password: {
@@ -26,7 +25,6 @@ module.exports = {
       phone_number: {
         type: Sequelize.STRING,
         allowNull: true,
-        unique: true,
       },
       created_at: {
         allowNull: false,
@@ -43,6 +41,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Users");
+    await queryInterface.dropTable("users");
   },
 };

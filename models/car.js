@@ -11,6 +11,10 @@ const Car = sequelize.define(
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
+      validate: {
+        len: [3, 100],
+      },
     },
     make: {
       type: DataTypes.STRING,
@@ -24,7 +28,6 @@ const Car = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-
     mileage: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -33,6 +36,9 @@ const Car = sequelize.define(
       type: DataTypes.STRING,
       allowNull: true,
       unique: true,
+      validate: {
+        is: /^[A-HJ-NPR-Z0-9]{17}$/, // VIN validation regex
+      },
     },
     description: {
       type: DataTypes.TEXT,

@@ -83,7 +83,7 @@ const userController = {
       res,
       () => userRepository.login(username, password),
       (data) => SUCCESS_MESSAGES.LOGIN_SUCCESS(ENTITY_NAME),
-      ERROR_MESSAGES.LOGIN_FAILED(ENTITY_NAME),
+      ERROR_MESSAGES.LOGIN_FAILED,
       ERROR_CODES.LOGIN_ERROR
     );
   },

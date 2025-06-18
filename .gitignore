@@ -1,6 +1,12 @@
 node_modules/
 dist/
-.vscode/
-.DS_Store
+logs/
 .env
+coverage/
+*.tmp
+.idea/
+.DS_Store
+test-output/
 package-lock.json
+yarn.lock
+npm-debug.log

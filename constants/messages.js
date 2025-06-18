@@ -54,6 +54,8 @@ const ERROR_MESSAGES = {
     "Payload too large. The request payload is larger than the server is willing or able to process.",
   TOKEN_EXPIRED: "Token has expired. Please log in again.",
   TOKEN_INVALID: "Invalid token. Please log in again.",
+
+  LOGIN_FAILED: "Login failed. Please check your credentials.",
 };
 
 const ERROR_CODES = {
